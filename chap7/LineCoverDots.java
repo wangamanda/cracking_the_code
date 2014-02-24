@@ -10,29 +10,30 @@ class Point{
 	}
 }
 
-class Line(Point p1, Point p2){
+class Line{
 	double k;
 	double b;
 	double epsilon = 0.00000001;
 	boolean ParX = false;
 	boolean ParY = false;
-	if ((p1.x - p2.x) < epsilon){
-		k = double.MAX_VALUE;
-		ParY = true;
-	}else if ((p1.y - p2.y) < epsilon){
-		k = 0;
-		b = p1.y;
-		ParX = true;
-	}else{
-		k = (p2.y - p1.y)/(p2.x - p1.x);
-		b = p2.y - k*p2.x;
-	}
+	Line(Point p1, Point p2){
+		if (Math.abs(p1.x - p2.x) < epsilon){
+			k = Double.MAX_VALUE;
+			ParY = true;
+		}else if (Math.abs(p1.y - p2.y) < epsilon){
+			k = 0;
+			b = p1.y;
+			ParX = true;
+		}else{
+			k = (p2.y - p1.y)/(p2.x - p1.x);
+			b = p2.y - k*p2.x;
+		}
+	}	
 }
 
 public class LineCoverDots{
 	public static void main(String args[]){
-		ArrayList<Line> lines = new ArrayList<Line>();
-		HashMap<double, ArrayList<Line>> hmap = new HashMap<double, ArrayList<Line>>();
+		HashMap<Double, ArrayList<Line>> hmap = new HashMap<Double, ArrayList<Line>>();
 
 		Point[] points = new Point[20];
 		for (int i = 0 ; i <= 5 ; i ++ ){
@@ -51,16 +52,31 @@ public class LineCoverDots{
 				insert(hmap, l);
 			}
 		}
+
+		int count = 0;
+		int best_cnt = 0;
+		for (ArrayList<Line> value : hmap.values()){
+			count = 0;
+			for (Line line : value){
+				count ++ ;
+			}
+			if (count > best_cnt){
+				best_cnt = count;
+			}
+		}
+		System.out.println(best_cnt + "");
 	}
 
-	public static void insert(HashMap<double, ArrayList<Line>> hmap, Line l){
-		double key = l.k;
+	public static void insert(HashMap<Double, ArrayList<Line>> hmap, Line l){
+		double key = (l.k/l.epsilon)*l.epsilon;
+		System.out.println(key+"");
 		ArrayList<Line> lines;
 		if(!hmap.containsKey(key)){
 			lines = new ArrayList<Line>();
+			hmap.put(key, lines);
 		}else{
 			lines = hmap.get(key);
 		}
-		
+		lines.add(l);
 	}
 }
