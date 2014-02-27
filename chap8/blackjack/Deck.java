@@ -32,10 +32,13 @@ public class Deck<T extends Card>{
 		if (cards.size() - dealtIndex < number){
 			return null;
 		}
-
+		T[] handcards = (T[]) new Card(number);
 		int count = 0;
 		while (count < number){
-			
+			T card = cards.get(dealtIndex++);
+			handcards[count++] = card;
+			card.markUnavailable();
 		}
+		return handcards;
 	}
 }
