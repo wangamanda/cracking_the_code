@@ -3,6 +3,10 @@ package blackjack;
 import java.util.ArrayList;
 
 public class BlackJackHand extends Hand<BlackJackCard>{
+	public BlackJackHand(){
+
+	}
+
 	public int score(){
 		ArrayList<Integer> scores = getPossibleScores();
 		int maxUnder = Integer.MIN_VALUE;

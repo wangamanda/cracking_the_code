@@ -1,16 +1,14 @@
 package blackjack;
 
-public class BlackJackCard extends Cards{
+public class BlackJackCard extends Card{
 
 	BlackJackCard(Suit s, int v){
 		super(s, v);
 	}
 
-	public int getValue(){
-		if(faceValue == 1){
-			if(isAce()){
-				return 1;
-			}
+	public int Value(){
+		if(isAce()){
+			return 1;
 		}else if(faceValue >= 10 && faceValue <= 13){
 			return 10;
 		}else{

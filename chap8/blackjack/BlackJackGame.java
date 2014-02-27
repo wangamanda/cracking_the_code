@@ -16,13 +16,13 @@ public class BlackJackGame{
 
 	public boolean initDeal(){
 		for (BlackJackHand hand : hands){
-			BlackJackCard card1 = hand.dealCard();
-			BlackJackCard card2 = hand.dealCard();
+			BlackJackCard card1 = deck.dealCard();
+			BlackJackCard card2 = deck.dealCard();
 			if(card1 == null || card2 == null){
 				return false;
 			}
-			hand.add(card1);
-			hand.add(card2);
+			hand.addCard(card1);
+			hand.addCard(card2);
 		}
 		return true;
 	}
@@ -63,11 +63,11 @@ public class BlackJackGame{
 
 	public boolean playHand(BlackJackHand hand){
 		while(hand.score() < UNTIL){
-			BlackJackCard card1 = hand.dealCard();
+			BlackJackCard card1 = deck.dealCard();
 			if (card1 == null){
 				return false;
 			}
-			hand.add(card1);
+			hand.addCard(card1);
 		}
 		return true;
 	}
@@ -78,7 +78,7 @@ public class BlackJackGame{
 		for (int i = 0 ; i < 13 ; i ++ ){
 			for (int j = 0 ; j < 4 ; j ++ ){
 				Suit suit = Suit.getSuit(j);
-				BlackJackCard card = new BlackJackCard(i+1, suit);
+				BlackJackCard card = new BlackJackCard(suit, i+1);
 				cards.add(card);
 			}
 		}

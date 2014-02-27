@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 public class Hand<T extends Card>{
 
-	protected ArrayList<T> HandCards = new ArrayList<T>();
+	protected ArrayList<T> cards = new ArrayList<T>();
 
-	public int Score(){
-		int s;
-		for(T card: HandCards){
-			s += HandCards.getValue();
+	public int score(){
+		int s = 0;
+		for(T card: cards){
+			s += card.Value();
 		}
 		return s;
 	}
 
 	public void addCard(T card){
-		HandCards.add(card);
+		cards.add(card);
 	}
 }

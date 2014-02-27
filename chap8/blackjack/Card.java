@@ -10,7 +10,7 @@ public abstract class Card{
 		faceValue = v;
 	}
 
-	public abstract int getValue();
+	public abstract int Value();
 
 	public Suit getSuit(){
 		return suit;

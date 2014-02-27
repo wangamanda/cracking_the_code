@@ -15,7 +15,7 @@ public enum Suit{
 		return value;
 	}
 
-	public Suit getSuit(int v){
+	public static Suit getSuit(int v){
 		switch(v){
 			case 0:
 				return Suit.Heart;
