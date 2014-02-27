@@ -41,4 +41,13 @@ public class Deck<T extends Card>{
 		}
 		return handcards;
 	}
+
+	public BlackJackCard dealCard(){
+		if (cards.size() - dealtIndex == 0){
+			return null;
+		}
+		T card = cards.get(dealtIndex++);
+		card.markUnavailable();
+		return card;
+	}
 }
