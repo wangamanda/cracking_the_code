@@ -3,7 +3,7 @@ package PhoneCall;
 public class Call{
 	private Title rank;
 	private Caller caller;
-	private Handler employee;
+	private Employee employee;
 
 	public Call(Caller c){
 		caller = c;

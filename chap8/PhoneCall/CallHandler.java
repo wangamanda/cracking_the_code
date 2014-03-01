@@ -14,7 +14,7 @@ public class CallHandler{
 	
 	protected CallHandler(){
 		employeeLevels = new ArrayList<ArrayList<Employee>>(LEVELS);
-		ArrayList<Employee> respondents = new ArrayList<Employee>(NUM_RESPONDETS);
+		ArrayList<Employee> respondents = new ArrayList<Employee>(NUM_RESPONDENTS);
 		for (int i = 0 ; i < NUM_RESPONDENTS ; i ++ ){
 			respondents.add(new Respondent());
 		}
@@ -47,7 +47,7 @@ public class CallHandler{
 		for (int i = rank ; i < LEVELS ; i ++ ){
 			ArrayList<Employee> employees = employeeLevels.get(i);
 			for (int j = 0 ; j < employees.size() ; j ++ ){
-				employee = employees.get(j);
+				Employee employee = employees.get(j);
 				if (employee.isFree()){
 					return employee;
 				}
@@ -58,6 +58,10 @@ public class CallHandler{
 
 	public void dispatchCall(Caller caller){
 		Call call = new Call(caller);
+		dispatchCall(call);	
+	}
+
+	public void dispatchCall(Call call){
 		Employee employee = getHandlerForCall(call);
 		if(employee != null){
 			call.setHandler(employee);
@@ -71,9 +75,9 @@ public class CallHandler{
 	//Find a call in the waiting queue and assign to the employee whose rank is equal to or higher than the
 	//call
 	public boolean assignCall(Employee employee){
-		int rank = callQueues.getRank().getValue();
+		int rank = employee.getRank().getValue();
 		for (int i = rank ; i >= 0 ; i --){
-			ArrayList<call> callQue = callQueues.get(i);
+			ArrayList<Call> callQue = callQueues.get(i);
 			if (callQue.size() > 0){
 				Call call = callQue.remove(0);
 				call.setHandler(employee);

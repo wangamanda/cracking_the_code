@@ -37,7 +37,7 @@ public abstract class Employee{
 		if(currentCall != null){
 			return false;
 		}
-		return CallHandler.getInstance.assignCall(this);
+		return CallHandler.getInstance().assignCall(this);
 	}
 
 	public Title getRank(){
@@ -47,7 +47,7 @@ public abstract class Employee{
 	public void ReassignCall(){
 		if (currentCall != null){
 			currentCall.incrementRank();
-			CallHandler.getInstance.dispatchCall(currentCall);
+			CallHandler.getInstance().dispatchCall(currentCall);
 			currentCall = null;
 		}
 		assignNewCall();

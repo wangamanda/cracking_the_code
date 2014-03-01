@@ -4,15 +4,14 @@ public enum Title{
 	Respondent(0),
 	Manager(1),
 	Director(2);
+	int value;
 
-	public static Title getTitle(int n){
-		switch (n){
-			case 0: 
-				return Title.Respondent;
-			case 1:
-				return Title.Manager;
-			case 2:
-				return Title.Director;
-		}
+	private Title(int v){
+		value = v;
 	}
+
+	public int getValue(){
+		return value;
+	}
+
 }
