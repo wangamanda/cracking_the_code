@@ -40,7 +40,7 @@ public class CallHandler{
 			ArrayList<Employee> employees = employeeLevels.get(i);
 			for (int j = 0 ; j < employees.size() ; j ++ ){
 				employee = employees.get(j);
-				if (employee != null){
+				if (employee.isFree()){
 					return employee;
 				}
 			}
