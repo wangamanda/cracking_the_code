@@ -7,6 +7,7 @@ public class CallHandler{
 	private final int NUM_RESPONDENTS = 10;
 	private final int NUM_MANAGERS = 4;
 	private final int NUM_DIRECTORS = 2;
+	private static CallHandler instance;
 
 	protected ArrayList<ArrayList<Employee>> employeeLevels;
 	protected ArrayList<ArrayList<Call>> callQueues;
@@ -32,6 +33,13 @@ public class CallHandler{
 		employeeLevels.add(directors);
 
 		callQueues = new ArrayList<ArrayList<Call>>(LEVELS);
+	}
+
+	public static CallHandler getInstance(){
+		if(instance == null){
+			return new CallHandler();
+		}
+		return instance;
 	}
 
 	public Employee getHandlerForCall(Call call){
@@ -60,16 +68,18 @@ public class CallHandler{
 		}
 	}
 
-	public void assignCall(Employee employee){
+	//Find a call in the waiting queue and assign to the employee whose rank is equal to or higher than the
+	//call
+	public boolean assignCall(Employee employee){
 		int rank = callQueues.getRank().getValue();
 		for (int i = rank ; i >= 0 ; i --){
 			ArrayList<call> callQue = callQueues.get(i);
 			if (callQue.size() > 0){
 				Call call = callQue.remove(0);
 				call.setHandler(employee);
-				return;
+				return true;
 			}
 		}
-		employee.setFree();
+		return false;
 	}
 }
