@@ -7,9 +7,8 @@ public class Song{
 	private double length;
 	private boolean isComplete;
 
-	public Song(int i, CD c, String t, double l){
+	public Song(int i, String t, double l){
 		id = i;
-		cd = c;
 		title = t;
 		length = l;
 		isComplete = false;
@@ -17,7 +16,7 @@ public class Song{
 
 	public void play(){
 		while(length > 0){
-			System.out.println("Song name: "+ name + ". Singer: "+singer+".");
+			System.out.println("Song name: "+ title + ". Length: "+length+".");
 			length -= 0.01;
 		}
 		complete();
@@ -28,7 +27,7 @@ public class Song{
 	}
 
 	public void complete(){
-		System.out.println("Song "+ name+" ends.");
+		System.out.println("Song "+ title+" ends.");
 		isComplete = true;
 	}
 

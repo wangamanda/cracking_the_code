@@ -17,13 +17,13 @@ public class CDPlayer{
 	}
 
 	public Song getCurrentSong(){
-		Song s = playList.peek();
+		Song s = playList.getNextToPlay();
 		return s;
 	}
 
 	public void playSong(Song s){
 		if (s == null){
-			playList.remove(s);
+			playList.removeSong();
 			playSong(getCurrentSong());
 		}else{
 			s.play();
