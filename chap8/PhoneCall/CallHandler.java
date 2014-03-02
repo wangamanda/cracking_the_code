@@ -67,7 +67,7 @@ public class CallHandler{
 			call.setHandler(employee);
 			employee.receiveCall(call);
 		}else{
-			call.reply("Please wait a second.");
+			call.Wait();
 			callQueues.get(call.getRank().getValue()).add(call);
 		}
 	}

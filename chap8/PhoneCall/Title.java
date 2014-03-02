@@ -6,6 +6,7 @@ public enum Title{
 	Director(2);
 	int value;
 
+	//constructor is private
 	private Title(int v){
 		value = v;
 	}

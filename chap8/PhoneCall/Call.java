@@ -26,6 +26,10 @@ public class Call{
 		System.out.println("Thank you for calling.");
 	}
 
+	public void Wait(){
+		System.out.println("Please wait for available representatives.");
+	}
+
 	public void setHandler(Employee emp){
 		employee = emp;
 	}

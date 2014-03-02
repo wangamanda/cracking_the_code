@@ -26,7 +26,7 @@ public abstract class Employee{
 	}
 
 	public void completeCall(){
-		if (currentCall != null){
+		if (!isFree()){
 			currentCall.disconnect();
 			currentCall = null;
 		}
@@ -34,7 +34,7 @@ public abstract class Employee{
 	}
 
 	public boolean assignNewCall(){
-		if(currentCall != null){
+		if (currentCall != null){
 			return false;
 		}
 		return CallHandler.getInstance().assignCall(this);
@@ -45,6 +45,7 @@ public abstract class Employee{
 	}
 
 	public void ReassignCall(){
+	//when the current level of employee cannot solve the problem, the phone goes to upper level
 		if (currentCall != null){
 			currentCall.incrementRank();
 			CallHandler.getInstance().dispatchCall(currentCall);
