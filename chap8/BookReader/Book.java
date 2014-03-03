@@ -21,7 +21,7 @@ public class Book{
 	}
 
 	public String getAuthor(){
-		return Author;
+		return author;
 	}
 
 	public void setID(int i){

@@ -1,6 +1,7 @@
 package BookReader;
 
 import java.util.Set;
+import java.util.HashSet;
 
 public class User{
 	private int uid;
@@ -10,7 +11,7 @@ public class User{
 	public User(int i, String n){
 		uid = i;
 		uname = n;
-		books = new Set<Book>();
+		books = new HashSet<Book>();
 	}
 
 	public int getID(){
@@ -25,7 +26,7 @@ public class User{
 		return uname;
 	}
 
-	public String setReaderName(String n){
+	public void setReaderName(String n){
 		uname = n;
 	}
 

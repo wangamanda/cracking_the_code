@@ -15,10 +15,14 @@ public class UserManager{
 	}
 
 	public boolean remove(User u){
-		return users.remove(u.getID());
+		if(users.containsKey(u.getID())){
+			users.remove(u.getID());
+			return true;
+		}
+		return false;
 	}
 
-	public boolean remove(ind id){
+	public boolean remove(int id){
 		if(users.containsKey(id)){
 			users.remove(id);
 			return true;
