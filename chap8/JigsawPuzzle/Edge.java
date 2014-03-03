@@ -3,9 +3,9 @@ package JigsawPuzzle;
 public class Edge{
 	private EdgeType edgeType;
 	private int edgeInt;
-	private Edge attached;
-	private int index;
-	private Pixel parent;
+	public Edge attached_to;
+	public int index;
+	public Pixel parent;
 
 	public EdgeType getEdgeType(){
 		return edgeType;

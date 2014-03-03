@@ -23,7 +23,7 @@ public enum EdgeType{
 			case 2:
 				return EdgeType.Outer;
 			default:
-				break;
+				return null;
 		}
 	}
 }

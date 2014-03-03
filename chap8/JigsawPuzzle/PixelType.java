@@ -19,7 +19,7 @@ public enum PixelType{
 			case 2:
 				return PixelType.Inside;
 			default:
-				break;
+				return null;
 		}
 	}
 }
