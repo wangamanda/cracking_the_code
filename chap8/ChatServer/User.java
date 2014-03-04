@@ -8,11 +8,11 @@ public class User{
 	private String fullName;
 	private UserStatusType status;
 
-	private HashMap<Integer, privateChat> privatechats;
-	private HashMap<Integer, groupChat> groupchats;
+	private HashMap<Integer, PrivateChat> privatechats;
+	private HashMap<Integer, GroupChat> groupchats;
 	private HashMap<Integer, User> friends;
 	private HashMap<Integer, Request> sentrequests;
-	private HashMap<Integer, Request> receivedquests;
+	private HashMap<Integer, Request> receivedrequests;
 
 	public User(int i, String a, String f){
 		id = i;
@@ -52,5 +52,43 @@ public class User{
 		return group.addMessage(m);
 	}
 
+	public void setStatus(UserStatusType type){
+		status = type;
+	}
+
+	public UserStatusType getStatus(){
+		return status;
+	}
+
+	public boolean addFriend(User u){
+		if(friends.containsValue(u)){
+			return false;
+		}
+		friends.put(u.getID(), u);
+		return true;
+	}
+
+	public void receiveRequest(Request r){
+		int receiveID = r.getFromUser().getID();
+		if(!receivedrequests.containsKey(receiveID)){
+			receivedrequests.put(receiveID, r);
+		}
+	}
+
+	public void sentRequest(Request r){
+		int sentID = r.getToUser().getID();
+		if(!sentrequests.containsKey(sentID)){
+			sentrequests.put(sentID, r);
+		}
+	}
+
+	public void removeRequest(Request r){
+		if(r.getToUser() == this){
+			receivedrequests.remove(r);
+		}
+		if(r.getFromUser() == this){
+			sentrequests.remove(r);
+		}
+	}
 
 }

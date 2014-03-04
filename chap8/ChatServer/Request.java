@@ -6,6 +6,12 @@ public class Request{
 	private Time time;
 	private RequestStatus status;
 
+	public Request(User f, User t, Time tm){
+		from = f;
+		to = t;
+		time = tm;
+	}
+
 	public Request(User f, User t, Time tm, RequestStatus s){
 		from = f;
 		to = t;
@@ -27,5 +33,9 @@ public class Request{
 
 	public RequestStatus getStatus(){
 		return status;
+	}
+
+	public void setStatus(RequestStatus s){
+		status = s;
 	}
 }
