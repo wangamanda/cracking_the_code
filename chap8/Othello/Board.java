@@ -25,21 +25,70 @@ public class Board{
 	}
 
 	public boolean placeColor(int row, int col, Color c){
+		int up = row;
+		int down = row;
+		int left = col;
+		int right = col;
 		if(board[row][col] != null){
 			return false;
 		}else{
 			board[row][col] = new Piece(c);
-			if(c == Color.Black){
-				BlackCount ++ ;
-			}else{
-				WhiteCount ++ ;
+			for(int i = 0 ; i < row ; i ++ ){
+				if(board[i][col] == null || board[i][col].getColor() == c){
+					continue;
+				}else{
+					up = i;
+				}
+			}
+			for (int i = ROW ; i > row ; i -- ){
+				if(board[i][col] == null || board[i][col].getColor() == c){
+					continue;
+				}else{
+					down = i;
+				}
+			}
+			for (int j = 0 ; j < col ; j ++ ){
+				if(board[row][j] == null || board[row][j].getColor() == c){
+					continue;
+				}else{
+					left = j;
+				}
+			}
+			for (int j = COL ; j > col ; j -- ){
+				if(board[row][j] == null || board[row][j].getColor() == c){
+					continue;
+				}else{
+					right = j;
+				}
 			}
 			
-			for(int i = 0 ; i < row ; i ++ ){
-				
+			int cnt = 0;
+			for (int i = up ; i <= down ; i ++ ){
+				board[i][col].Flip();
+				cnt ++ ;
 			}
-			return true;
+			for (int j = left ; j <= right ; j ++ ){
+				board[row][j].Flip();
+				cnt ++ ;
+			}
+			
+			for (int i = cnt ; i >= 0 ; i -- ){
+				if(c == Color.Black){
+					BlackCount ++ ;
+				}else{
+					WhiteCount ++ ;
+				}
+			}
+			
 		}
+		return true;
 	}
 
+	public int getScoreForColor(Color c){
+		if(c == Color.Black){
+			return BlackCount;
+		}else{
+			return WhiteCount;
+		}
+	}
 }

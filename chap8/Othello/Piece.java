@@ -7,11 +7,11 @@ public class Piece{
 		color = c;
 	}
 
-	public Color Flip(){
+	public void Flip(){
 		if(color == Color.White){
-			return Color.Black;
+			color = Color.Black;
 		}else if(color == Color.Black){
-			return Color.White;
+			color = Color.White;
 		}
 	}
 

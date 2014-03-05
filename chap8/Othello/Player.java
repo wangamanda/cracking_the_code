@@ -7,7 +7,7 @@ public class Player{
 	}
 
 	public int getScore(){
-		
+		return Game.getInstance().getBoard().getScoreForColor(color);
 	}
 
 	public Color getColor(){
@@ -15,6 +15,6 @@ public class Player{
 	}
 
 	public boolean playPiece(int r, int c){
-		Game.getInstance().getBoard().placeColor(r, c, color);
+		return Game.getInstance().getBoard().placeColor(r, c, color);
 	}
 }
