@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.HashMap;
 
 class Box{
 	int width;
@@ -50,56 +51,37 @@ public class PutBox{
 		boxes.add(e);
 		boxes.add(a);
 		ArrayList<Box> res = new ArrayList<Box>();
-		res = getHighest(res, boxes);
+		HashMap<Box, ArrayList<Box>> map = new HashMap<Box, ArrayList<Box>>();
+		res = getHighest(boxes, null, map);
 		int H = getH(res);
 		System.out.println("Height: "+H);
 	}
 
-	public static ArrayList<Box> getHighest(ArrayList<Box> res, ArrayList<Box> boxes){
-		if(boxes.size() == 0){
-			return res;
+	public static ArrayList<Box> getHighest(ArrayList<Box> boxes, Box bottom, HashMap<Box, ArrayList<Box>> map){
+		if(bottom != null && map.containsKey(bottom)){//the longest stack based on box bottom has been found
+			return map.get(bottom);
 		}
+
+		ArrayList<Box> max_stack = null;
 		
-		ArrayList<ArrayList<Box>> arr = new ArrayList<ArrayList<Box>>();
-		for(Box b : boxes){
-			if(res.size() == 0){
-				res.add(b);
-			}
-			if(b.canPutAbove(res.get(res.size()-1))){
-				res.add(b);
-			}
-			ArrayList<Box> tmp = new ArrayList<Box>();
-			for(Box x : boxes){
-				if(!b.equals(x))
-					tmp.add(x);
-			}
-			if(tmp.size() != 0){
-				ArrayList<Box> ar = getHighest(res, tmp);
-				arr.add(ar);
-			}else{
-				ArrayList<Box> ar = new ArrayList<Box>();
-				ar.add(b);
-				return ar;
+		for (Box b : boxes) {
+			if(bottom == null || b.canPutAbove(bottom)){
+				ArrayList<Box> tmp = getHighest(boxes, b, map);
+				if(getH(tmp) > getH(max_stack)){
+					max_stack = tmp;
+				}
 			}
 		}
 
-		if(arr.size() > 0){
-			int m = 0;
-			ArrayList<Box> a = new ArrayList<Box>();
-			ArrayList<Box> aa = new ArrayList<Box>();
-			for (int i = 0 ; i < arr.size() ; i ++ ){
-				a = arr.get(i);
-				if(getH(a) > m){
-					aa = new ArrayList<Box>();
-					for(Box b:a){
-						aa.add(b);
-					}
-					m = getH(a);
-				}
-			}
-			return aa;
+		if(max_stack == null){//no box can lay on top of box bottom
+			max_stack = new ArrayList<Box>();
 		}
-		return res;
+		if(bottom != null){
+			max_stack.add(bottom);
+			map.put(bottom, max_stack);//put box bottom and the current longest stack based on it(itself)
+		}
+		return (ArrayList<Box>)max_stack.clone();
+		//return type of clone() is Object, need to cast
 	}
 	
 	public static int getH(ArrayList<Box> boxes){
