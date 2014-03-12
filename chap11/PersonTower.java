@@ -48,8 +48,33 @@ public class PersonTower{
 		arr.add(p5);
 		Person p6 = new Person(68, 110);
 		arr.add(p6);
+		Person p7 = new Person(77, 180);
 		Collections.sort(arr, Person.compareHgt);
 //		Collections.sort(arr, Person.compareWgt);
-		
+		ArrayList<Person> res = FindLongest(arr);
+		for (int i = 0 ; i < res.size() ; i ++ ){
+			System.out.println(res.get(i).getHgt()+" "+res.get(i).getWgt());
+		}
+	}
+
+	public static ArrayList<Person> FindLongest(ArrayList<Person> arr){
+		ArrayList<Person> res = new ArrayList<Person>();
+		ArrayList<Person> tmp = new ArrayList<Person>();
+		res.add(arr.get(0));
+		for(int i = 1 ; i < arr.size() ; i ++ ){
+			if(arr.get(i).getWgt() > arr.get(i-1).getWgt()){
+				res.add(arr.get(i));
+			}else{
+				if(res.size() > tmp.size()){
+					tmp = res;
+					res.clear();
+				}
+			}
+		}
+		if(tmp.size() != 0){
+			return tmp;
+		}else{
+			return res;
+		}
 	}
 }
