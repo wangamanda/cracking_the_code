@@ -7,8 +7,13 @@ public class TrailingZero{
 
 	public static int Zeros(int n){
 		int k = 1;
-		for (int i = 5 ; i < n ; i += 5){
+		for (int i = 5 ; i <= n ; i += 5){
 			k ++ ;
+			int t = i/5;
+			while(t % 5 == 0){
+				t /= 5;
+				k ++ ;
+			}
 		}
 		return k;
 	}
