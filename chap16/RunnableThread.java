@@ -19,11 +19,10 @@ public class RunnableThread implements Runnable{
 		thread.start();
 		try{
 			while(count < 5){
-				thread.sleep(250);
-				count ++ ;
+				Thread.sleep(250);
 			}
 		}catch(InterruptedException exp){
-			System.out.println("interrupted exception.");
+			exp.printStackTrace();
 		}
 	}
 }
