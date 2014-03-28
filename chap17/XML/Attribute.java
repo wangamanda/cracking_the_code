@@ -1,8 +1,8 @@
 package XML;
 
 public class Attribute{
-	String tag;
-	String value;
+	public String tag;
+	public String value;
 
 	public Attribute(String t, String v){
 		tag = t;
