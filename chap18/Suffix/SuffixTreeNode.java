@@ -16,7 +16,7 @@ public class SuffixTreeNode{
 		arr.add(index);
 		char first = str.charAt(0);
 		value = first;
-		String sub = String.substring(1);
+		String sub = str.substring(1);
 		SuffixTreeNode child = null;
 		if(children.containsKey(first)){
 			child = children.get(first);
@@ -26,5 +26,18 @@ public class SuffixTreeNode{
 		}
 		
 		child.insert(sub, index);
+	}
+
+	public ArrayList<Integer> getIndexes(String str){
+		if(str == null || str.length() == 0){
+			return arr;
+		}else{
+			char first = str.charAt(0);
+			if(children.containsKey(first)){
+				String sub = str.substring(1);
+				return children.get(first).getIndexes(sub);
+			}
+		}
+		return null;
 	}
 }
