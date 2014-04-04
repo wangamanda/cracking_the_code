@@ -9,13 +9,13 @@ import java.util.Queue;
 public class OneDistanceWords{
 	public static void main(String[] args){
 		Set<String> dictionary = new TreeSet<String>();
-		String[] words = {"abcde","abced","abcce","aeccd","acedb","acebd","abdde","badce","bbdec","bacef"};
+		String[] words = {"abcde","abced","abcce","aeccd","abddd","acebd","abdde","abdce","bbdec","bacef"};
 		for(String word : words){
 			dictionary.add(word);
 		}
 
-		String start = "abced";
-		String end = "bacef";
+		String start = "abcde";
+		String end = "abddd";
 		LinkedList<String> res = getWords(start, end, dictionary);
 		System.out.println(res);
 	}
@@ -29,14 +29,14 @@ public class OneDistanceWords{
 		closeList.add(start);
 		while(!openList.isEmpty()){
 			String w = openList.poll();
-			ArrayList<String> neighbors = getNeighbors(w, dictionary);
+			ArrayList<String> neighbors = getNeighbors(w);
 			for(String s : neighbors){
 				if(s.equals(end)){
 					LinkedList<String> res = new LinkedList<String>();
-					res.add(w);
-					while(s != null){
-						res.add(0, s);
-						s = backtrackMap.get(s);
+					res.add(s);
+					while(w != null){
+						res.add(0, w);
+						w = backtrackMap.get(w);
 					}
 					return res;
 				}else{
@@ -52,7 +52,7 @@ public class OneDistanceWords{
 		return null;
 	}
 
-	public static ArrayList<String> getNeighbors(String s, Set<String> dictionary){
+	public static ArrayList<String> getNeighbors(String s){
 		ArrayList<String> res = new ArrayList<String>();
 		for(int i = 0 ; i < s.length() ; i ++ ){
 			char[] words = s.toCharArray();
