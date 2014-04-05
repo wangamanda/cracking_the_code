@@ -28,11 +28,11 @@ public class Rectangle{
 
 	}
 
-	public boolean isComplete(int l, int h, wordGroup wg){
+	public boolean isComplete(int l, int h, WordGroup wg){
 		if(height == h){
 			for(int j = 0 ; j < l ; j ++ ){
 				String str = getColumn(j);
-				if(str == null){
+				if(!wg.containsWord(str)){
 					return false;
 				}
 			}

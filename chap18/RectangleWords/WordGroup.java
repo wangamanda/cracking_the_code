@@ -1,11 +1,11 @@
 package RectangleWords;
 
 import java.util.ArrayList;
-import java.util.LinedList;
+import java.util.LinkedList;
 import java.util.HashMap;
 
 public class WordGroup{
-	HashMap<String, Boolean> map = new HashMap();
+	HashMap<String, Boolean> map = new HashMap<String, Boolean>();
 	ArrayList<String> arr =new ArrayList<String>();
 
 	public WordGroup(){
@@ -44,12 +44,12 @@ public class WordGroup{
 		res = new WordGroup[maxLength];
 
 		for(String s : list){
-			int len = s.length-1;
+			int len = s.length()-1;
 			if(res[len] == null){
 				res[len] = new WordGroup();
 			}
 
-			res[len].add(s);
+			res[len].addWord(s);
 		}
 		return res;
 	}
