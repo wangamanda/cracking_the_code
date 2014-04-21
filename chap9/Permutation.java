@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Permutation{
 	public static void main(String args[]){
-		String str = "abcde";
+		String str = args[0];
 		ArrayList<String> res = new ArrayList<String>();
 		res = getPermuts(str);
 		for (int i = 0 ; i < res.size() ; i ++ ){

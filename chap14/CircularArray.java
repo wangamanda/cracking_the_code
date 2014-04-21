@@ -1,8 +1,20 @@
-package chap14;
+//package chap14;
 
 import java.util.Iterator;
 
 public class CircularArray<T> implements Iterable<T>{
+
+	public static void main(String[] args){
+		CircularArray<String> carr = new CircularArray<String>(10);
+		for(int i = 0 ; i < 10 ; i ++ ){
+			carr.set(i, String.valueOf(i));
+		}
+
+		carr.rotate(3);
+		for(String i : carr){
+			System.out.println(i);
+		}
+	}
 	 T[] items;
 	 int head = 0;
 
@@ -18,7 +30,7 @@ public class CircularArray<T> implements Iterable<T>{
 	}
 
 	public  void rotate(int n){
-		head = convert(head);
+		head = convert(n);
 	}
 
 	public T get(int n){
